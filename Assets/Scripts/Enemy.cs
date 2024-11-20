@@ -33,8 +33,13 @@ public class Enemy : MonoBehaviour
                 State = States.Shoot;
                 CurrentSeconds = 0f;
             }
-            var directionToPlayer = (Player.transform.position - transform.position).normalized;
-            transform.Translate(directionToPlayer * Time.deltaTime);
+            if (Global.Player)
+            {
+                var directionToPlayer = (
+                    Global.Player.transform.position - transform.position
+                ).normalized;
+                transform.Translate(directionToPlayer * Time.deltaTime);
+            }
             CurrentSeconds += Time.deltaTime;
         }
         else if (State == States.Shoot)
@@ -50,11 +55,16 @@ public class Enemy : MonoBehaviour
 
             if (Time.frameCount % 20 == 0)
             {
-                var directionToPlayer = (Player.transform.position - transform.position).normalized;
-                var playerBullet = Instantiate(EnemyBullet);
-                playerBullet.transform.position = transform.position;
-                playerBullet.Direction = directionToPlayer;
-                playerBullet.gameObject.SetActive(true);
+                if (Global.Player)
+                {
+                    var directionToPlayer = (
+                        Global.Player.transform.position - transform.position
+                    ).normalized;
+                    var playerBullet = Instantiate(EnemyBullet);
+                    playerBullet.transform.position = transform.position;
+                    playerBullet.Direction = directionToPlayer;
+                    playerBullet.gameObject.SetActive(true);
+                }
             }
         }
     }
