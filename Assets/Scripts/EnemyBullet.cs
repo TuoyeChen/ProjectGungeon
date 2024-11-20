@@ -17,7 +17,7 @@ public class EnemyBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.name.StartsWith("Player"))
+        if (other.gameObject.GetComponent<Player>())
         {
             GameUI.Default.GameOver.SetActive(true);
             other.gameObject.SetActive(false);

@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
 
-        transform.Translate(new Vector3(horizontal, vertical) * Time.deltaTime);
+        transform.Translate(new Vector3(horizontal, vertical) * Time.deltaTime * 5);
 
         if (Input.GetMouseButtonDown(0))
         {

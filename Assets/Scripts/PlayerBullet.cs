@@ -17,11 +17,9 @@ public class PlayerBullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.name.StartsWith("Enemy"))
+        if (other.gameObject.GetComponent<Enemy>())
         {
-            GameUI.Default.GamePass.SetActive(true);
             other.gameObject.SetActive(false);
-            Time.timeScale = 0;
         }
     }
 }
